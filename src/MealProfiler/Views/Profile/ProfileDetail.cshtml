@@ -1,0 +1,214 @@
+﻿@*  if i set the Layout = null; this would tell MVC we were not using a layout page, for finer control of content display. *@
+
+
+@* add a model binding so that we can pass the mealProfiles list to this page for easy reference. *@
+
+
+
+@* using a single MealProfile for this page. Baically, I want to see one meal at a time here. *@
+
+@model MealProfiler.Models.ProfileViewModel
+@using System.ComponentModel.DataAnnotations;
+@using MealProfiler.Models;
+
+
+@{
+
+    ViewBag.Title = "Profile Detail";  // you can set the ViewBag here without using the at symbol, since all the code is in the at symbol block
+                                    //  If you set a ViewBag in the controller, you need to use the at symbol before refeening it.
+                                    // if you bind the return value in the controller, yo ucan just reference its properties by using
+                                    // and at symbol.Property
+                                    //
+                                    // we want the backbar not to show up if we are on the Add.cshtml view.
+
+
+  
+
+}
+
+
+
+@* this can be used to display results
+
+    ViewBag.MinutesSpentPreparing = minutesSpentPreparing;
+    ViewBag.AverageTimeSpentPreparingMeals = (minutesSpentPreparing / (double)numberOfMeals);
+    <h1 class="stats-header">Welcome to the NewRoots Meal Profiler and Ingredient Library!</h1>
+
+*@
+
+
+
+
+<div class="body2 bg-danger p-3">
+    <div class="container bg-warning p-3">
+        <h2>Summarized Meal Results for Your Meal</h2>
+        <p class="profile-detail-intro">
+            Health and Nutrition is a Science AND an Art!  Take the time to write down what makes you happy and healthy, and save those
+            Meals here on the 'Meal Profiler'.  You can even print out the meals and pass them to your health professional.  More to come as
+            this is a labor of love and the ideas are flowing fast and furious.  Loving your feedback.  --Matt
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-dark table-bordered">
+
+
+                @if (Model.SpinachCheckbox == true && Model.SpinachQuantity >= 0)
+                {
+                    <thead>
+                        <tr class="bg-success">
+                            <th>Meal Goal</th>
+                            <th>Meal Cost (U.S. Dollars)</th>
+                            <th>Preparation Time (minutes)</th>
+                            <th>Author</th>
+                            <th>Meal Id</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="">
+                        <tr class="bg-info">
+                            <td>
+
+                                <span class="hidden-xs">
+                                    <!-- Meal.Name will return the name of the Meal Goal. -->
+
+                                    @Model.MealGoal
+                                </span>
+                            </td>
+                            <td>@Model.MealCost</td>
+                            <td>@Model.PrepTime</td>
+                            <td>@Model.MealAuthor</td>
+                            <th>@Model.ProfileId</th>
+                        </tr>
+                    </tbody>
+
+                    <thead>
+                        <tr class="bg-danger">
+                            <th class="bg-danger">Ingredient</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <td class="bg-secondary">
+                                Spinach
+                            </td>
+                        </tr>
+                    </thead>
+                    <thead class="">
+                        <tr class="bg-primary">
+                            <th>Nutrition Value</th>
+                            <th>Base Nutrient USDA % Value</th>
+                            <th>Quantity</th>
+                            <th>Modified USDA % Value</th>
+                        </tr>
+                    </thead>
+                    // inner foreach to print out all of the ingredient nutrition modified
+                    // by the formula (Base * Quantity * Units) where grams will have a fictitious unit multiplier.
+
+                    // may refactor Ingredient type to name change of Ingredient
+                    double qty = (double)Model.SpinachQuantity;
+
+                    foreach (KeyValuePair<string, double> pair in Ingredient.SpinachDictionary)
+                    {
+                        string nutritionType = pair.Key;
+                        double baseNutritionIntValue = pair.Value;
+                        double quantity = qty;
+                        double modifiedResult = qty * baseNutritionIntValue;
+
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                    @nutritionType
+                                </td>
+                                <td>@baseNutritionIntValue</td>
+                                <td>@quantity</td>
+                                <td>@modifiedResult</td>
+                            </tr>
+                        </tbody>
+                    }
+                }
+
+                @if (Model.TomatoCheckbox == true && Model.TomatoQuantity >= 0)
+                {
+                    <thead>
+                        <tr class="bg-success">
+                            <th>Meal Goal</th>
+                            <th>Meal Cost (U.S. Dollars)</th>
+                            <th>Preparation Time (minutes)</th>
+                            <th>Author</th>
+                            <th>Meal Id</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="">
+                        <tr class="bg-info">
+                            <td>
+                                @* when i navigate to /Add/id# I will get specific results  *@
+                                <span class="hidden-xs">
+                                    <!-- Meal.Name will return the name of the Meal Goal. -->
+                                    @Model.MealGoal
+                                </span>
+                            </td>
+                            <td>@Model.MealCost</td>
+                            <td>@Model.PrepTime</td>
+                            <td>@Model.MealAuthor</td>
+                            <th>@Model.ProfileId</th>
+                        </tr>
+                    </tbody>
+
+                    <thead>
+                        <tr class="bg-danger">
+                            <th class="bg-danger">Ingredient</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <td class="bg-secondary">
+                                Tomato
+                            </td>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr class="bg-primary">
+                            <th>Nutrition Value</th>
+                            <th>Base Nutrient USDA % Value</th>
+                            <th>Quantity</th>
+                            <th>Modified USDA % Value</th>
+                        </tr>
+                    </thead>
+
+                    double qty2 = (double)Model.TomatoQuantity;
+                    foreach (KeyValuePair<string, double> pair in Ingredient.TomatoDictionary)
+                    {
+                        string nutritionType = pair.Key;
+                        double baseNutritionIntValue = pair.Value;
+                        double quantity = qty2;
+                        double modifiedResult = qty2 * baseNutritionIntValue;
+
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                    @nutritionType
+                                </td>
+                                <td>@baseNutritionIntValue</td>
+                                <td>@quantity</td>
+                                <td>@modifiedResult</td>
+                            </tr>
+                        </tbody>
+                    }
+
+                }
+
+            </table>
+
+            <div class="col-sm-12">
+                @Html.ActionLink("Home", "Index", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

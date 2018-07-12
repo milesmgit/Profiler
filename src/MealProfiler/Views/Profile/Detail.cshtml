@@ -1,0 +1,118 @@
+﻿@*adding a model view directive so that we can create a strongly-typed view.
+    A strongly-typed view exposes its model instance through its model property.
+    So we add the namespace and the Model/Class/Type   this creates a strongly typed View.
+    In this case, we are going to reference a specific ingredient throughout the view; we
+    will initialize the view with an id of 1, so that the first item in the array is displayed.*@
+
+@model MealProfiler.Models.Ingredient
+@using MealProfiler.Models;
+
+@{
+
+
+    <!-- next we will set the Title of the ViewBag property for this View to "Meal Calculator Nutrient Results -->
+    ViewBag.Title = "Ingredient Profile";
+
+
+
+}
+
+
+
+
+<h1 class="my-4 text-center text-lg-left">@ViewBag.Title</h1>
+<div class="row text-center text-lg-left">
+    <div class="col-md-6 col-xs-12">
+        <h5>Photo of @Model.IngredientName</h5>
+        @* so we told it to look in the Images folder, then we returned our auto property of IngredientDetailFileName.*@
+        <img src="/Images/@Model.IngredientDetailFileName"
+             alt="@Model.IngredientName" class="img-fluid img-thumbnail rounded" />
+        <h3>Nutrient Profile Description:</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-dark table-bordered">
+
+                <!-- later i need to model reference the list of added ingredients so i can build this results table
+                dynamically -->
+
+                <thead>
+                    <tr class="bg-danger">
+                        <th class="bg-danger">Ingredient</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <td class="bg-secondary">
+                            @Model.IngredientName
+                        </td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr class="bg-primary">
+                        <th>Nutrition Value</th>
+                        <th>Base Nutrient USDA % Value</th>
+                    </tr>
+                </thead>
+
+
+
+
+                @if (Model.IngredientName == "Tomato")
+                {
+                    ViewBag.DictionaryType = Ingredient.TomatoDictionary;
+                }
+
+                else if (Model.IngredientName == "Spinach")
+                {
+                    ViewBag.DictionaryType = Ingredient.SpinachDictionary;
+                }
+                else if (Model.IngredientName == "Pepper")
+                {
+                    ViewBag.DictionaryType = Ingredient.PepperDictionary;
+                }
+
+                else if (Model.IngredientName == "Carrot")
+                {
+                    ViewBag.DictionaryType = Ingredient.CarrotDictionary;
+                }
+                else if (Model.IngredientName == "Potato")
+                {
+                    ViewBag.DictionaryType = Ingredient.PotatoDictionary;
+                }
+
+                @* would like to refactor to toggle the dictionary based on ingredient name.
+                    instead of using else if and repeat code.  *@
+                @foreach (KeyValuePair<string, double> pair in @ViewBag.DictionaryType)
+                {
+                    string nutritionType = pair.Key;
+                    double baseNutritionIntValue = pair.Value;
+
+                    <tbody>
+                        <tr>
+                            <td>
+
+                                @nutritionType
+                            </td>
+                            <td>@baseNutritionIntValue</td>
+
+                        </tr>
+                    </tbody>
+                }
+
+
+            </table>
+        </div>
+    </div>
+
+    @* second column. *@
+
+    <div class="col-md-6 col-xs-12">
+        <h4>Profile: @Model.IngredientName</h4>
+        <p>@Html.Raw(Model.IngredientDescriptionHtml)</p>
+    </div>
+
+
+
+</div>
+
+
+

@@ -1,0 +1,124 @@
+﻿@model MealProfiler.Models.ProfileViewModel
+
+
+@{
+    ViewBag.Title = "Add Person";
+}
+
+@* this is so we can use our model MealProfile *@
+
+@using MealProfiler.Models
+
+
+
+
+@using (Html.BeginForm("AddProfile", "Profile"))
+{
+
+    @* 27) Notes: MVC_Forms_2: Adding a validation summary up top, and then individual suggestions
+        throughout the form as they are required.   passing in   We can then customize the message for the global summary.
+        there is also an overload that allows us to add classes and allow bootstrap to customize our
+        messages for us.  *@
+
+    @Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-warning" })
+
+
+
+    // we added our MealType enum items to our dropdownfor menu select.  we also added an empty string as the second value, to force a selection at start. I believe we cast the SelectList to an int so Meal_Id can hold it's value to be sent to the database.
+    <div class="row mx-3 p-3" id="top-form">
+        <div class="form-group form-control-lg col-sm-12">
+            @Html.LabelFor(m => m.MealGoal, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.MealGoal, (SelectList)ViewBag.MealsSelectListItems, "", new { @class = "form-control" })
+
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.MealCost, "Meal Cost (Nearest Cent)", new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.MealCost, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.PrepTime, "Prep Time (Nearest Minute)", new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.PrepTime, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.MealAuthor, "Created By:", new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.MealAuthor, new { @class = "form-control" })
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="form-group p-3 mx-auto">
+            @Html.LabelFor(m => m.Notes, new { @class = "control-label" })
+            @Html.TextAreaFor(m => m.Notes, 10, 58, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row mx-3 p-3">
+                <div class="form-check form-check-inline p-3">
+                    @Html.CheckBoxFor(m => m.TomatoCheckbox) Tomato
+                </div>
+                <div class="form-group p-3">
+                    @Html.LabelFor(m => m.TomatoQuantity, "Quantity", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.TomatoQuantity, new { @class = "form-control" })
+                </div>
+
+
+            </div> <!-- end row mx-3 p-3-->
+
+        </div> <!-- end col-->
+
+
+        <div class="col-md-6">
+
+            <div class="row mx-3 p-3">
+
+                <div class="form-check form-check-inline p-3">
+                    @Html.CheckBoxFor(m => m.SpinachCheckbox) Spinach
+                </div>
+
+
+                <div class="form-group p-3">
+                    @Html.LabelFor(m => m.SpinachQuantity, "Quantity", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.SpinachQuantity, new { @class = "form-control" })
+                </div>
+
+
+
+
+
+            </div> <!-- end col-->
+
+        </div> <!-- end row -->
+
+    </div> <!-- end row div-->
+
+
+    <div class="col-md-12 mx-auto">
+        <div class="pad-top">
+            <button type="submit" class="btn btn-success btn-lg  mb-3 p-3">
+                <span class="glyphicon glyphicon-save"></span> Save
+            </button>
+            <a href="@Url.Action("Index")" class="btn btn-warning btn-lg mb-3 p-3">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </a>
+        </div>
+    </div>
+}
+
+
+
+
+
