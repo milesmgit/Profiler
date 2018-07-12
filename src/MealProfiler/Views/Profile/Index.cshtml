@@ -42,78 +42,47 @@
 
 *@
 
-<h3>Meal Expense Running Totals</h3>
-
-<table class="table">
-    <tr>
-        <th>Total Minutes</th>
-        <th>Avg Minutes</th>
-        <th>Total Cost</th>
-        <th class="">Avg Cost</th>
-    </tr>
-    @* we are working with single MealProfile objects at a time here in the Model of List<MealProfile> objects. *@
-
-    <tr>
-        <!-- Meal.Name will return the name of the Meal Goal. -->
-        <td>@ViewBag.MinutesSpentPreparing</td>
-        <td>@ViewBag.AverageTimeSpentPreparingMeals</td>
-        <td>@ViewBag.TotalFoodCost</td>
-        <td class="">@ViewBag.AverageCostPerMeal</td>
-    </tr>
-
-</table>
-
-<h3>@ViewBag.Title Single Meal Results</h3>
-<table class="table table-striped table-dark">
-
-    <thead>
-        <tr class="bg-danger">
-            <th>Meal Goal</th>
-            <th>Cost</th>
-            <th>Prep Time</th>
-            <th class="">Author</th>
-            <th class="">Id</th>
-            <th>Actions</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-
-
-    @* we are working with single MealProfile objects at a time here in the Model of List<MealProfile> objects. *@
-    <tbody>
-        @for (var meal = 0; meal < Model.Profiles.Count; meal++)
-        {
-
-
+    <table class="table table-striped  table-dark">
+        <thead>
             <tr>
-                <!-- Meal.Name will return the name of the Meal Goal. -->
-                <td>@Model.Profiles[meal].MealGoal</td>
-                <td>@Model.Profiles[meal].MealCost</td>
-                <td>@Model.Profiles[meal].PrepTime</td>
-                <td class="">@Model.Profiles[meal].MealAuthor</td>
-                <td class="">@Model.Profiles[meal].ProfileId</td>
-                <td>@Html.ActionLink("Details", "ProfileDetail", new { id = Model.Profiles[meal].ProfileId })</td>
-                <td>
-                    <div class="pull-right">
-                        <a href="@Url.Action("Edit", new { id = Model.Profiles[meal].ProfileId })" class="btn btn-warning btn-sm margin-right">
-                            <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Review</span>
-                        </a>
-                        <a href="@Url.Action("Delete", new { id = Model.Profiles[meal].ProfileId })" class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
-                        </a>
-                    </div>
-                </td>
+                <th>Name</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Profiles.Count; i++)
+            {
+                <tr>
+                    <td>@Model.Profiles[i].MealAuthor</td>
+                    <td>
+                        @Html.ActionLink("Detail", "ProfileDetail", new { id = Model.Profiles[i].ProfileId })
+                        | @Html.ActionLink("Edit", "ProfileEdit", new { id = Model.Profiles[i].ProfileId })
+                        | <a data-toggle="modal" href="@("#deleteProfileModal" + i)">Delete</a>
+                        <div class="modal fade" id="@("deleteProfileModal" + i)" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    @using (Html.BeginForm("DeleteProfile", "Profile"))
+                                    {
+                                        <input type="hidden" value="@Model.Profiles[i].ProfileId" name="ProfileId" />
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Delete @Model.Profiles[i].MealAuthor</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete @Model.Profiles[i].MealAuthor?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Yes</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-
-
-<div class="col-sm-12 form-group">
-    <label>Total Profiles:</label> @Model.TotalProfiles
-</div>
-<div class="col-sm-12">
-    @Html.ActionLink("Add Profile", "ProfileAdd", null, new { @class = "btn btn-primary" })
-</div>
 

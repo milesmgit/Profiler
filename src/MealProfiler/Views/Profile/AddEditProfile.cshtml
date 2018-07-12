@@ -1,8 +1,12 @@
 ﻿@model MealProfiler.Models.ProfileViewModel
 
 
+@* Later I want to change MealGoal to Meal.Name, but as of yet, I don't know how. *@
+
+
 @{
-    ViewBag.Title = "Add Person";
+  var isEditMode = Model.ProfileId != null;
+  ViewBag.Title = isEditMode ? "Edit " + Model.MealGoal : "Add Profile";
 }
 
 @* this is so we can use our model MealProfile *@
@@ -12,8 +16,12 @@
 
 
 
-@using (Html.BeginForm("AddProfile", "Profile"))
+@using (Html.BeginForm(isEditMode ? "EditProfile" : "AddProfile", "Profile"))
 {
+
+    // this allows us to keep the profile hidden after the post back to the server.
+    @Html.HiddenFor(m => m.ProfileId)
+
 
     @* 27) Notes: MVC_Forms_2: Adding a validation summary up top, and then individual suggestions
         throughout the form as they are required.   passing in   We can then customize the message for the global summary.
@@ -108,9 +116,9 @@
 
     <div class="col-md-12 mx-auto">
         <div class="pad-top">
-            <button type="submit" class="btn btn-success btn-lg  mb-3 p-3">
-                <span class="glyphicon glyphicon-save"></span> Save
-            </button>
+            <button type="submit" class="btn btn-primary">@(isEditMode ? "Save" : "Add")</button>
+            <span class="glyphicon glyphicon-save"></span> Save
+
             <a href="@Url.Action("Index")" class="btn btn-warning btn-lg mb-3 p-3">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
             </a>

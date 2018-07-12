@@ -110,9 +110,12 @@
         <p>@Html.Raw(Model.IngredientDescriptionHtml)</p>
     </div>
 
+    
 
 
 </div>
 
 
-
+<div class="col-sm-12">
+    @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-primary" })
+</div>

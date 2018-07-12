@@ -165,6 +165,88 @@ namespace MealProfiler.Controllers
 		}
 
 
+		public ActionResult ProfileEdit(int id)
+		{
+			var profile = Profiles.SingleOrDefault(p => p.ProfileId == id);
+			if (profile != null)
+			{
+				var profileViewModel = new ProfileViewModel
+				{
+					ProfileId = profile.ProfileId,
+					MealGoal = profile.MealGoal,
+					PrepTime = profile.PrepTime,
+					MealCost = profile.MealCost,
+					MealAuthor = profile.MealAuthor,
+					SpinachQuantity = profile.SpinachQuantity,
+					TomatoQuantity = profile.TomatoQuantity,
+					SpinachCheckbox = profile.SpinachCheckbox,
+					TomatoCheckbox = profile.TomatoCheckbox,
+					Notes = profile.Notes
+				};
+
+				// this will add the list of our meals enum to the dropdownfor: so in the future, don't manually add them to a dropdown form element.  use the DropDownFor method as seen here. along with the enum.
+				SetupMealsSelectListItems();
+
+				return View("AddEditProfile", profileViewModel);
+			}
+
+			return new HttpNotFoundResult();
+		}
+
+
+
+		[HttpPost]
+		public ActionResult EditProfile(ProfileViewModel profileViewModel)
+		{
+			var profile = Profiles.SingleOrDefault(p => p.ProfileId == profileViewModel.ProfileId);
+
+			if (profile != null)
+			{
+				profile.MealGoal = profileViewModel.MealGoal;
+				profile.PrepTime = profileViewModel.PrepTime;
+				profile.MealCost = profileViewModel.MealCost;
+				profile.MealAuthor = profileViewModel.MealAuthor;
+				profile.SpinachQuantity = profileViewModel.SpinachQuantity;
+				profile.TomatoQuantity = profileViewModel.TomatoQuantity;
+				profile.SpinachCheckbox = profileViewModel.SpinachCheckbox;
+				profile.TomatoCheckbox = profileViewModel.TomatoCheckbox;
+				profile.Notes = profileViewModel.Notes;
+
+				return RedirectToAction("Index");
+			}
+
+			return new HttpNotFoundResult();
+		}
+
+
+		[HttpPost]
+		public ActionResult DeleteProfile(ProfileViewModel profileViewModel)
+		{
+			var profile = Profiles.SingleOrDefault(p => p.ProfileId == profileViewModel.ProfileId);
+
+			if (profile != null)
+			{
+				Profiles.Remove(profile);
+
+				return RedirectToAction("Index");
+			}
+
+			return new HttpNotFoundResult();
+		}
+
+
+
+
+
+
+
+
+
+		private void SetupMealsSelectListItems()
+		{
+			ViewBag.MealsSelectListItems = new SelectList(
+							Data.Data.Meals, "Id", "Name");
+		}
 
 
 
