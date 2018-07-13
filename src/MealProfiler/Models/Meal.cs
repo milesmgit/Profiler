@@ -32,7 +32,7 @@ namespace MealProfiler.Models
 		}
 
 		/// <summary>
-		/// The Meal_ID of the meal from the MealType enum.
+		/// The MealGoal of the meal from the MealType enum.
 		/// </summary>
 		public int Id { get; set; }
 

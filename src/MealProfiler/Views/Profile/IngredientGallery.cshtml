@@ -23,7 +23,7 @@
             // this will send us to the Detail.cshtml  View on mouse click.
             <div class="col-lg-3 col-md-4 col-xs-6">
                 <h4>
-                    @Html.ActionLink(@ingredient.IngredientName, "Detail", new { id = ingredient.Id })
+                    @Html.ActionLink(@ingredient.IngredientName, "IngredientDetail", new { id = ingredient.Id })
                 </h4>
 
                 @*We will use Razor to set the href attribute value.  the @Url.Action method provides a signature overload for

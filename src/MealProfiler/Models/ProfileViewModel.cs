@@ -28,7 +28,7 @@ namespace MealProfiler.Models
 		/// Constructor for easily creating mealProfiles.
 		/// </summary>
 		/// <param name="profileid">The ID for the MealProfile.</param>  so we can keep track of which meal profile submission is which
-		/// <param name="mealType">The meal type MealProfile passed to the Meal_Id from the casting of the (int)MealType enum..</param>  dropdownbox
+		/// <param name="mealType">The meal type MealProfile passed to the MealGoal from the casting of the (int)MealType enum..</param>  dropdownbox
 		/// <param name="prepTime">The duration for the MealProfile (in minutes).</param>
 		/// <param name="mealCost">The duration for the MealProfile (in minutes).</param>
 		/// <param name="mealAuthor"></param>
