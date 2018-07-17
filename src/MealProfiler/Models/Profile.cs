@@ -31,8 +31,8 @@ namespace MealProfiler.Models
 		/// <param name="notes">The notes for the MealProfile.</param>
 		public Profile(int profileid, Meal.MealType mealType,
 				int prepTime, double mealCost, string mealAuthor, double spinachQuantity,
-				double tomatoQuantity,
-				bool spinachCheckbox = false, bool tomatoCheckbox = false, string notes = null)
+				double tomatoQuantity, bool spinachCheckbox = false, bool tomatoCheckbox = false, 
+				string notes = null)
 
 		{
 			ProfileId = profileid;
@@ -77,7 +77,7 @@ namespace MealProfiler.Models
 		[Range(typeof(double), ".01", "1000000000")] // billionaires have to eat too!
 		public double MealCost { get; set; }
 
-
+		
 		public string MealAuthor { get; set; }
 
 		public bool SpinachCheckbox { get; set; }

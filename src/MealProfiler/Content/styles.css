@@ -338,7 +338,7 @@ li {
     width: 100%;
     background: grey;
     padding: 20px 20px 20px 20px; /* this gives the paragraph elements some breathing room  */
-    margin: 0; /*  0 margin to force sticky footer  */
+    margin-top: 200px; /*  0 margin to force sticky footer  */
     margin-bottom: 45px; /* margin to clear at scroll's end the fixed-footer's constant bottom 45px height */
     border-top: solid black 2px;
     background: linear-gradient(0deg, lightgreen, transparent 85%), linear-gradient(180deg, lightgreen, transparent 85%), darkgreen;
@@ -435,9 +435,20 @@ li {
 
 
     @media (min-width: 769px) {
+
+
+        
+
         /* img styling for the header img with the text overlay 'Welcome to Newroots' ... */
         .backgroundHeader {
             height: 350px;
+            
+        }
+
+        /* styling for the newroots logo and slogan on the main nav bar  */
+        .newrootsBrand {
+            height: 120px;
+            width: 300px;
         }
 
        
@@ -476,17 +487,9 @@ li {
             z-index: 1000;
         }
 
-      
-
-
-
-        /* this is the newroots logo on the main-nav */
-        .newrootsBrand {
-            height: 55px;
-        }
-
+     
         .backgroundHeader1 {
-            margin-top: 83px;
+            margin-top: 140px;
         }
     }
     /* end 990 media query */
@@ -507,13 +510,10 @@ li {
         }
 
 
-        /* this is the newroots logo on the main-nav */
-        .newrootsBrand {
-            height: 70px;
-        }
+       
 
         .backgroundHeader1 {
-            margin-top: 103px;
+            margin-top: 140px;
         }
     }
 
@@ -530,10 +530,7 @@ li {
         .nav-link {
             font-size: .95em;
         }
-        /* this is the newroots logo on the main-nav */
-        .newrootsBrand {
-            height: 100px;
-        }
+       
     }
     /*******************************************************************************
 ********************************************************************************

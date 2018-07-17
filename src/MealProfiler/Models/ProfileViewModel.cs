@@ -72,7 +72,7 @@ namespace MealProfiler.Models
 		// a number that corresponds to the type of meal.
 
 		/// <summary>
-		/// The meal for the MealProfile.
+		/// The meal for the Meal Profile.
 		/// </summary>
 		public Meal Meal { get; set; }
 

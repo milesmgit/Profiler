@@ -50,7 +50,7 @@ namespace MealProfiler.Controllers
 						TomatoCheckbox = p.TomatoCheckbox,
 						Notes = p.Notes
 					}).ToList()
-				
+
 				};
 
 				profileList.TotalProfiles = profileList.Profiles.Count;
@@ -142,68 +142,79 @@ namespace MealProfiler.Controllers
 		[HttpPost]
 		public ActionResult AddProfile(ProfileViewModel profileViewModel)
 		{
-			using (var mealProfilerContext = new MealProfilerContext())
-			{
-				var profile = new Profile
-				{
-				
-					MealGoal = profileViewModel.MealGoal,
-					PrepTime = profileViewModel.PrepTime,
-					MealCost = profileViewModel.MealCost,
-					MealAuthor = profileViewModel.MealAuthor,
-					SpinachQuantity = profileViewModel.SpinachQuantity,
-					TomatoQuantity = profileViewModel.TomatoQuantity,
-					SpinachCheckbox = profileViewModel.SpinachCheckbox,
-					TomatoCheckbox = profileViewModel.TomatoCheckbox,
-					Notes = profileViewModel.Notes
-				};
 
-				mealProfilerContext.Profiles.Add(profile);
-				mealProfilerContext.SaveChanges();
+			if (ModelState.IsValid)
+			{
+				ValidateProfile(profileViewModel);
+
+				// here we set the variable List<MealProfile> mealProfiles to an instance of our data 
+
+				TempData["Message"] = "Your meal entry was successfully added!";
+
+
+
+				using (var mealProfilerContext = new MealProfilerContext())
+				{
+					var profile = new Profile
+					{
+
+						MealGoal = profileViewModel.MealGoal,
+						PrepTime = profileViewModel.PrepTime,
+						MealCost = profileViewModel.MealCost,
+						MealAuthor = profileViewModel.MealAuthor,
+						SpinachQuantity = profileViewModel.SpinachQuantity,
+						TomatoQuantity = profileViewModel.TomatoQuantity,
+						SpinachCheckbox = profileViewModel.SpinachCheckbox,
+						TomatoCheckbox = profileViewModel.TomatoCheckbox,
+						Notes = profileViewModel.Notes
+					};
+
+					mealProfilerContext.Profiles.Add(profile);
+					mealProfilerContext.SaveChanges();
+				}
+
+			
+
+				return RedirectToAction("Index");
 			}
 
 			// this will add the list of our meals enum to the dropdownfor: so in the future, don't manually add them to a dropdown form element.  use the DropDownFor method as seen here. along with the enum.
 			SetupMealsSelectListItems();
-
-			return RedirectToAction("Index");
+			return View("AddEditProfile", profileViewModel);
 		}
-
-
-
-
-
 
 
 
 		public ActionResult ProfileEdit(int id)
 		{
-			using (var mealProfilerContext = new MealProfilerContext())
-			{
-				var profile = mealProfilerContext.Profiles.SingleOrDefault(p => p.ProfileId == id);
-				if (profile != null)
+
+				using (var mealProfilerContext = new MealProfilerContext())
 				{
-					var profileViewModel = new ProfileViewModel
+					var profile = mealProfilerContext.Profiles.SingleOrDefault(p => p.ProfileId == id);
+					if (profile != null)
 					{
-						ProfileId = profile.ProfileId,
-						MealGoal = profile.MealGoal,
-						PrepTime = profile.PrepTime,
-						MealCost = profile.MealCost,
-						MealAuthor = profile.MealAuthor,
-						SpinachQuantity = profile.SpinachQuantity,
-						TomatoQuantity = profile.TomatoQuantity,
-						SpinachCheckbox = profile.SpinachCheckbox,
-						TomatoCheckbox = profile.TomatoCheckbox,
-						Notes = profile.Notes
-					};
+						var profileViewModel = new ProfileViewModel
+						{
+							ProfileId = profile.ProfileId,
+							MealGoal = profile.MealGoal,
+							PrepTime = profile.PrepTime,
+							MealCost = profile.MealCost,
+							MealAuthor = profile.MealAuthor,
+							SpinachQuantity = profile.SpinachQuantity,
+							TomatoQuantity = profile.TomatoQuantity,
+							SpinachCheckbox = profile.SpinachCheckbox,
+							TomatoCheckbox = profile.TomatoCheckbox,
+							Notes = profile.Notes
+						};
 
-					// this will add the list of our meals enum to the dropdownfor: so in the future, don't manually add them to a dropdown form element.  use the DropDownFor method as seen here. along with the enum.
-					SetupMealsSelectListItems();
+						// this will add the list of our meals enum to the dropdownfor: so in the future, don't manually add them to a dropdown form element.  use the DropDownFor method as seen here. along with the enum.
+						SetupMealsSelectListItems();
 
-					return View("AddEditProfile", profileViewModel);
+						return View("AddEditProfile", profileViewModel);
+					}
 				}
-			}
 
-			return new HttpNotFoundResult();
+				return new HttpNotFoundResult();
 		}
 
 
@@ -211,31 +222,43 @@ namespace MealProfiler.Controllers
 		[HttpPost]
 		public ActionResult EditProfile(ProfileViewModel profileViewModel)
 		{
-			using (var mealProfilerContext = new MealProfilerContext())
-			{
-				var profile = mealProfilerContext.Profiles.SingleOrDefault(p => p.ProfileId == profileViewModel.ProfileId);
 
-				if (profile != null)
+				if (ModelState.IsValid)
 				{
-					profile.MealGoal = profileViewModel.MealGoal;
-					profile.PrepTime = profileViewModel.PrepTime;
-					profile.MealCost = profileViewModel.MealCost;
-					profile.MealAuthor = profileViewModel.MealAuthor;
-					profile.SpinachQuantity = profileViewModel.SpinachQuantity;
-					profile.TomatoQuantity = profileViewModel.TomatoQuantity;
-					profile.SpinachCheckbox = profileViewModel.SpinachCheckbox;
-					profile.TomatoCheckbox = profileViewModel.TomatoCheckbox;
-					profile.Notes = profileViewModel.Notes;
-					mealProfilerContext.SaveChanges();
+					ValidateProfile(profileViewModel);
+
+					// here we set the variable List<MealProfile> mealProfiles to an instance of our data 
+
+					TempData["Message"] = "Your meal entry was successfully updated!";
 
 
-					SetupMealsSelectListItems();
-					return RedirectToAction("Index");
+					using (var mealProfilerContext = new MealProfilerContext())
+					{
+						var profile = mealProfilerContext.Profiles.SingleOrDefault(p => p.ProfileId == profileViewModel.ProfileId);
+
+						if (profile != null)
+						{
+							profile.MealGoal = profileViewModel.MealGoal;
+							profile.PrepTime = profileViewModel.PrepTime;
+							profile.MealCost = profileViewModel.MealCost;
+							profile.MealAuthor = profileViewModel.MealAuthor;
+							profile.SpinachQuantity = profileViewModel.SpinachQuantity;
+							profile.TomatoQuantity = profileViewModel.TomatoQuantity;
+							profile.SpinachCheckbox = profileViewModel.SpinachCheckbox;
+							profile.TomatoCheckbox = profileViewModel.TomatoCheckbox;
+							profile.Notes = profileViewModel.Notes;
+							mealProfilerContext.SaveChanges();
+
+							return RedirectToAction("Index");
+						}
+						return new HttpNotFoundResult();
+					}
 				}
-			}
+				SetupMealsSelectListItems();
 
-			return new HttpNotFoundResult();
+				return View(profileViewModel);
 		}
+			
 
 
 
@@ -261,6 +284,34 @@ namespace MealProfiler.Controllers
 
 
 
+		private void ValidateProfile(ProfileViewModel profileViewModel)
+		{
+			if (ModelState.IsValidField("PrepTime") && profileViewModel.PrepTime <= 0)
+			{
+				ModelState.AddModelError("PrepTime", "The Prep Time field value must be greater than '0'.");
+			}
+
+			if (ModelState.IsValidField("MealCost") && profileViewModel.MealCost <= 0)
+			{
+				ModelState.AddModelError("MealCost", "The Meal Cost field value must be greater than '0'.");
+			}
+
+			if (ModelState.IsValidField("MealAuthor") && profileViewModel.MealAuthor == "" || profileViewModel.MealAuthor == null)
+			{
+				profileViewModel.MealAuthor = "Dr. Who";
+			}
+
+			// if the checkbox is not checked, then return null for respective quantities.
+			if (ModelState.IsValidField("TomatoQuantity") && profileViewModel.TomatoCheckbox == false)
+			{
+				profileViewModel.TomatoQuantity = null;
+			}
+
+			if (ModelState.IsValidField("SpinachQuantity") && profileViewModel.SpinachCheckbox == false)
+			{
+				profileViewModel.SpinachQuantity = null;
+			}
+		}
 
 
 
