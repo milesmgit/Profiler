@@ -31,7 +31,7 @@
                     Url.ActionLink methods differ and Url.Action methods differ in that the Html.ActionLink method generates
                     a complete <a> element whereas the Url.Action method just generates a URL string. *@
 
-                <a href="@Url.Action("Detail", new { id = ingredient.Id })" class="d-block mb-4 h-100">
+                <a href="@Url.Action("IngredientDetail", new { id = ingredient.Id })" class="d-block mb-4 h-100">
                     <img src="/Images/@ingredient.IngredientDetailFileName"
                          alt="@ingredient.IngredientName" class="img-fluid img-thumbnail">
                 </a>
