@@ -17,18 +17,12 @@ namespace MealProfiler.Controllers
 
 		private IngredientsRepository _ingredientsRepository = null;
 
-
-		// constructor for the MattController that calls the MealProfile() Class and assigns it 
-		// to the private variable _mealProfiles      and again for _mealProfilesRepository
+		// constructor for the ProfileController that calls the IngredientsRepository() Class and assigns it 
+		// to the private variable _PingredientsRepository      
 		public ProfileController()
 		{
 			_ingredientsRepository = new IngredientsRepository();
 		}
-
-
-
-
-
 
 		public ActionResult Index()
 		{
@@ -50,15 +44,12 @@ namespace MealProfiler.Controllers
 						TomatoCheckbox = p.TomatoCheckbox,
 						Notes = p.Notes
 					}).ToList()
-
 				};
-
 				profileList.TotalProfiles = profileList.Profiles.Count;
 
 				return View(profileList);
 			}
 		}
-
 
 		public ActionResult ProfileDetail(int id)
 		{
@@ -88,12 +79,9 @@ namespace MealProfiler.Controllers
 			return new HttpNotFoundResult();
 		}
 
-
-
 		// add index action method; needs to be public and return and ActionResult object
 		public ActionResult IngredientGallery()
 		{
-
 			// passing a _ingredientRepository array to the ingredient variable; this will make the array available 
 			// via the View's Model property.
 			var ingredients = _ingredientsRepository.GetIngredients();
@@ -102,9 +90,8 @@ namespace MealProfiler.Controllers
 
 		}
 
-
-		// id is returned from the address bar path at present, but after i set up clickable linked images
-		// then the ingredient id will be set up that way.
+		// the view path, including id is returned from  clickable linked images
+		
 		public ActionResult IngredientDetail(int? id)
 		{
 			if (id == null)
@@ -116,14 +103,10 @@ namespace MealProfiler.Controllers
 			// i used .Value to cast the int? to int.  could have casted explicitly also.
 			var ingredient = _ingredientsRepository.GetIngredient(id.Value);
 
-
 			ViewBag.DictionaryType = Ingredient.TomatoDictionary;
 
 			return View(ingredient);
-
 		}
-
-
 
 		public ActionResult ProfileAdd()
 		{
@@ -136,28 +119,19 @@ namespace MealProfiler.Controllers
 			return View("AddEditProfile", profileViewModel);
 		}
 
-
-
-
 		[HttpPost]
 		public ActionResult AddProfile(ProfileViewModel profileViewModel)
 		{
-
 			if (ModelState.IsValid)
 			{
 				ValidateProfile(profileViewModel);
 
-				// here we set the variable List<MealProfile> mealProfiles to an instance of our data 
-
 				TempData["Message"] = "Your meal entry was successfully added!";
-
-
 
 				using (var mealProfilerContext = new MealProfilerContext())
 				{
 					var profile = new Profile
 					{
-
 						MealGoal = profileViewModel.MealGoal,
 						PrepTime = profileViewModel.PrepTime,
 						MealCost = profileViewModel.MealCost,
@@ -173,8 +147,6 @@ namespace MealProfiler.Controllers
 					mealProfilerContext.SaveChanges();
 				}
 
-			
-
 				return RedirectToAction("Index");
 			}
 
@@ -183,11 +155,8 @@ namespace MealProfiler.Controllers
 			return View("AddEditProfile", profileViewModel);
 		}
 
-
-
 		public ActionResult ProfileEdit(int id)
 		{
-
 				using (var mealProfilerContext = new MealProfilerContext())
 				{
 					var profile = mealProfilerContext.Profiles.SingleOrDefault(p => p.ProfileId == id);
@@ -217,8 +186,6 @@ namespace MealProfiler.Controllers
 				return new HttpNotFoundResult();
 		}
 
-
-
 		[HttpPost]
 		public ActionResult EditProfile(ProfileViewModel profileViewModel)
 		{
@@ -227,10 +194,7 @@ namespace MealProfiler.Controllers
 				{
 					ValidateProfile(profileViewModel);
 
-					// here we set the variable List<MealProfile> mealProfiles to an instance of our data 
-
 					TempData["Message"] = "Your meal entry was successfully updated!";
-
 
 					using (var mealProfilerContext = new MealProfilerContext())
 					{
@@ -259,9 +223,6 @@ namespace MealProfiler.Controllers
 				return View(profileViewModel);
 		}
 			
-
-
-
 		[HttpPost]
 		public ActionResult DeleteProfile(ProfileViewModel profileViewModel)
 		{
@@ -280,9 +241,6 @@ namespace MealProfiler.Controllers
 
 			return new HttpNotFoundResult();
 		}
-
-
-
 
 		private void ValidateProfile(ProfileViewModel profileViewModel)
 		{
@@ -313,22 +271,12 @@ namespace MealProfiler.Controllers
 			}
 		}
 
-
-
-
 		private void SetupMealsSelectListItems()
 		{
 			ViewBag.MealsSelectListItems = new SelectList(
 							Data.Data.Meals, "Id", "Name");
 		}
-
-
-
 	}
-
-
-
-
 }
 
 

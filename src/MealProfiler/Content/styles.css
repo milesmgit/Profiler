@@ -31,7 +31,6 @@
 }
 
 
-
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -41,16 +40,11 @@ body {
    
 }
 
-
-
-
-
 /* creating sticky-footer on small viewport heights and greater */
 .wrap {
     min-height: calc(100vh - 126px); /*   -81 secondary footer  -45 main-fixed-footer */
     
 }
-
 
 
 /***********************************************************/
@@ -80,11 +74,6 @@ body {
     
 }
 
-/* this is Home: Meal Summary on the backbar button.  */
-.btn-default {
-    height: 30px;
-
-}
 
 
 
@@ -99,7 +88,7 @@ body {
     width: 200px;
 }
 
-/* this allows for scrolling of the 'fresh stop market' dropdown menu */
+/* this allows for scrolling of the  dropdown menu, should the list grow too long.  */
 .dropdown-menu {
     max-height: 450px;
     overflow-y: auto;
@@ -171,13 +160,6 @@ body {
 /***********************************************************/
 /***********************************************************/
 
-/* create meal on add page view*/
-#welcome-create, h2, h3 {
-    margin-top: 50px;
-    text-shadow: rgba(255,255,255,0.5) 0 3px 3px;
-    font-size: 20px;
-}
-
 
 .validation-summary-valid {
     display: none;
@@ -190,16 +172,9 @@ body {
 }
 
 
-
-
 #top-form {
     margin: 40px;
 }
-
-
-
-
-
 
 
 #inlineCheckbox1 {
@@ -209,8 +184,6 @@ body {
 #inlineCheckbox2 {
     margin-left: 0;
 }
-
-
 
 
 /***********************************************************/
@@ -231,9 +204,12 @@ a:focus {
 
 a {
     padding: 10px;
+    color: red;
 }
 
-
+a:hover {
+    color: yellow;
+}
 
 
 p {
@@ -247,18 +223,18 @@ p {
     margin: 12px auto;
 }
 
-    .profile-detail-intro {
-        color: black;
-    }
+ .profile-detail-intro {
+    color: black;
+ }
 
-    /*  links in paragraphs elements */
-    p > a {
-        text-align: center;
-        font-size: 1.2em;
-        color: red;
-        margin: 0 auto;
-        text-decoration: underline;
-    }
+/*  links in paragraphs elements */
+p > a {
+    text-align: center;
+    font-size: 1.2em;
+    color: red;
+    margin: 0 auto;
+    text-decoration: underline;
+}
 
 h1 {
     font-size: 1.25em;
@@ -273,14 +249,14 @@ h2 {
   
 }
 
-    h2 > a {
-        font-family: Helvetica, Arial, sans-serif;
-        font-size: .6em;
-        padding: 20px 0;
-        margin: 20px auto;
-        color: firebrick;
-        text-decoration: underline;
-    }
+h2 > a {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: .6em;
+    padding: 20px 0;
+    margin: 20px auto;
+    color: firebrick;
+    text-decoration: underline;
+}
 
 h3 {
     margin-top: 20px;
@@ -294,7 +270,6 @@ h4 {
     text-align: center;
     padding: 20px;
     font-weight: bold;
-    
     
 }
 
@@ -342,9 +317,9 @@ li {
     background: linear-gradient(0deg, lightgreen, transparent 85%), linear-gradient(180deg, lightgreen, transparent 85%), darkgreen;
 }
 
-    .secondary-footer p {
-        text-align: left;
-    }
+.secondary-footer p {
+    text-align: left;
+}
 
 /* to-top href=#top circle-styled element in the persistent fixed-footer  */
 .to-top {
@@ -413,10 +388,6 @@ li {
 
 
 
-
-
-
-
 /***********************************************************/
 /***********************************************************/
 /*******************Media Queries Styling ******************/
@@ -424,113 +395,81 @@ li {
 /***********************************************************/
 
 
+ @media (min-width: 769px) {
+
+    /* img styling for the header img with the text overlay 'Welcome to Newroots' ... */
+    .backgroundHeader {
+        height: 350px;
+    }
+
+    /* styling for the newroots logo and slogan on the main nav bar  */
+    .newrootsBrand {
+        height: 120px;
+        width: 300px;
+    }  
+}
+/* end 769 media query */
+
 
    
+@media (min-width: 990px) {
+
+    /* creating sticky-footer on small viewport heights and greater */
+    .wrap {
+        min-height: calc(100vh - 208px); /* (208px) (-82 main-nav-margin) -81 secondary footer  -45 main-fixed-footer */
+    }
+
+    /* main-nav font-size */
+    .nav-link {
+        font-size: .85em;
+    }
 
 
-
+    /* ---------- Fixed Positioning Example ------------ */
+    /* Using fixed position to keep the main-header and nav at the top of the viewport regardless of where they are on the page. */
+    .navbar {
+        position: fixed;
+        width: 100%; /* I set width to 100% because when position is set to fixed, the main-header will only be as wide as its content. */ /* So I override this to have a nice menu that stays with the user as they scroll down. */
+        top: 0; /* This is to ensure that the main-header container stays put at the top of the page and follows the user as they scroll. */
+        z-index: 1000;
+    }
   
+    .backgroundHeader1 {
+        margin-top: 140px;
+    }
+}
+/* end 990 media query */
 
 
-    @media (min-width: 769px) {
+
+@media (min-width: 1050px) {
+
+    /* creating sticky-footer on small viewport heights and greater */
+    .wrap {
+        min-height: calc(100vh - 223px); /* (208px) (-97 main-nav-margin) -81 secondary footer  -45 main-fixed-footer */
+    }
+
+    .backgroundHeader1 {
+        margin-top: 140px;
+    }
+}
 
 
-        
+@media (min-width: 1200px) {
 
-        /* img styling for the header img with the text overlay 'Welcome to Newroots' ... */
-        .backgroundHeader {
-            height: 350px;
-            
-        }
+    /* creating sticky-footer on small viewport heights and greater */
+    .wrap {
+        min-height: calc(100vh - 253px); /* (253px) (-127 main-nav-margin) -81 secondary footer  -45 main-fixed-footer */
+    }
 
-        /* styling for the newroots logo and slogan on the main nav bar  */
-        .newrootsBrand {
-            height: 120px;
-            width: 300px;
-        }
-
+    /* font  size increase for main-nav links */
+    .nav-link {
+        font-size: .95em;
+    }
        
-    }
-    /* end 769 media query */
+}
 
-
-    @media (min-width: 969px) {
-       
-    }
-    /* end 969 media query */
-
-    @media (min-width: 990px) {
-
-
-
-        /* creating sticky-footer on small viewport heights and greater */
-        .wrap {
-            min-height: calc(100vh - 208px); /* (208px) (-82 main-nav-margin) -81 secondary footer  -45 main-fixed-footer */
-        }
-
-
-
-        /* main-nav font-size */
-        .nav-link {
-            font-size: .85em;
-        }
-
-
-        /* ---------- Fixed Positioning Example ------------ */
-        /* Using fixed position to keep the main-header and nav at the top of the viewport regardless of where they are on the page. */
-        .navbar {
-            position: fixed;
-            width: 100%; /* I set width to 100% because when position is set to fixed, the main-header will only be as wide as its content. */ /* So I override this to have a nice menu that stays with the user as they scroll down. */
-            top: 0; /* This is to ensure that the main-header container stays put at the top of the page and follows the user as they scroll. */
-            z-index: 1000;
-        }
-
-     
-        .backgroundHeader1 {
-            margin-top: 140px;
-        }
-    }
-    /* end 990 media query */
-
-
-    @media (min-width: 1025px) {
-
-    
-    }
-    /* end media query for 1025px and greater  */
-
-
-    @media (min-width: 1050px) {
-
-        /* creating sticky-footer on small viewport heights and greater */
-        .wrap {
-            min-height: calc(100vh - 223px); /* (208px) (-97 main-nav-margin) -81 secondary footer  -45 main-fixed-footer */
-        }
-
-
-       
-
-        .backgroundHeader1 {
-            margin-top: 140px;
-        }
-    }
-
-
-    @media (min-width: 1200px) {
-
-
-        /* creating sticky-footer on small viewport heights and greater */
-        .wrap {
-            min-height: calc(100vh - 253px); /* (253px) (-127 main-nav-margin) -81 secondary footer  -45 main-fixed-footer */
-        }
-
-        /* font  size increase for main-nav links */
-        .nav-link {
-            font-size: .95em;
-        }
-       
-    }
-    /*******************************************************************************
+/*******************************************************************************
 ********************************************************************************
 ***********************  end css flexbox layouts styles  ***********************
 ********************************************************************************

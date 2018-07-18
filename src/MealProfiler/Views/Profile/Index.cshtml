@@ -8,16 +8,22 @@
 
 @using System.ComponentModel.DataAnnotations;
 @using MealProfiler.Models;
+@using MealProfiler.Data;
+
+
 
 
 @{
-    ViewBag.Title = "Meal Profiler";  // you can set the ViewBag here without using the at symbol, since all the code is in the at symbol block
-                                      //  If you set a ViewBag in the controller, you need to use the at symbol before refeening it.
-                                      // if you bind the return value in the controller, yo ucan just reference its properties by using
-                                      // and at symbol.Property
+  ViewBag.Title = "Meal Profiler";  // you can set the ViewBag here without using the at symbol, since all the code is in the at symbol block
+                                    //  If you set a ViewBag in the controller, you need to use the at symbol before refeening it.
+                                    // if you bind the return value in the controller, yo ucan just reference its properties by using
+                                    // and at symbol.Property
 
-    ViewBag.ShowBackBar = true;
+  ViewBag.ShowBackBar = true;
 
+
+
+  
 
 }
 
@@ -34,13 +40,7 @@
 
 
 
-
-
-
-
-
-
-<h3>@ViewBag.Title Single Meal Results</h3>
+<h3 class="p-3 mb-5">@ViewBag.Title Single Meal Results</h3>
 <table class="table table-striped table-dark">
 
     <thead>
@@ -59,11 +59,11 @@
     @* we are working with single MealProfile objects at a time here in the Model of List<MealProfile> objects. *@
     @for (var meal = 0; meal < Model.Profiles.Count; meal++)
     {
-
+      
 
         <tr>
-            <!-- Meal.Name will return the name of the Meal Goal. -->
-            <td>@Model.Profiles[meal].MealGoal</td>
+            <!-- Meal.MealType cast of int MealGoal will return the name of the Meal Goal. -->
+            <td>@((Meal.MealType)Model.Profiles[meal].MealGoal)</td>
             <td>@Model.Profiles[meal].MealCost</td>
             <td>@Model.Profiles[meal].PrepTime</td>
             <td class="">@Model.Profiles[meal].MealAuthor</td>

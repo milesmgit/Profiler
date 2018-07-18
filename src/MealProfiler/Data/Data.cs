@@ -18,7 +18,7 @@ namespace MealProfiler.Data
 			InitData();
 		}
 
-		private static void InitData()
+		public static void InitData()
 		{
 			// instantiate and provide the parameter values for 1 list.
 			// create the collection of Meals first so that we can refeence them when building our list of meal Profiles.
