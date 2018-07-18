@@ -79,13 +79,15 @@ namespace MealProfiler.Models
 		/// <summary>
 		/// The prepTime for the MealProfile (in minutes).
 		/// </summary>
+		[Display(Name = "Prep Time")]
 		[Range(typeof(int), "1", "100000")]
 		public int PrepTime { get; set; }
 
+		[Display(Name = "Meal Cost")]
 		[Range(typeof(double), ".01", "1000000000")] // billionaires have to eat too!
 		public double MealCost { get; set; }
 
-
+		
 		public string MealAuthor { get; set; }
 
 		public bool SpinachCheckbox { get; set; }
