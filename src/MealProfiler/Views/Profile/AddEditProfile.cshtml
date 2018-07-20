@@ -23,14 +23,10 @@
     @Html.HiddenFor(m => m.ProfileId)
 
 
-    @* 27) Notes: MVC_Forms_2: Adding a validation summary up top, and then individual suggestions
-        throughout the form as they are required.   passing in   We can then customize the message for the global summary.
-        there is also an overload that allows us to add classes and allow bootstrap to customize our
+    @*  Adding a validation summary up top; using an overload that allows us to add classes and allow bootstrap to customize our
         messages for us.  *@
 
     @Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-warning" })
-
-
 
     // we added our MealType enum items to our dropdownfor menu select.  we also added an empty string as the second value, to force a selection at start. I believe we cast the SelectList to an int so MealGoal can hold it's value to be sent to the database.
     <div class="row mx-3 p-3" id="top-form">
@@ -40,9 +36,6 @@
 
         </div>
     </div>
-
-
-
 
     <div class="row">
         <div class="form-group col-md-4">

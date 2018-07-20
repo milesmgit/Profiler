@@ -1,9 +1,8 @@
-﻿@* add a model binding so that we can pass the mealProfiles list to this page for easy reference. *@
+﻿@* add a model binding so that we can pass the profiles list to this page for easy reference. *@
 
 @model MealProfiler.Models.ProfileListViewModel
 
 
-@* the compiler gave me advice to use 'Component.DataAnnotation, but then wouldn't take it, so I used the one I used for the MealProfile, and I think its working. *@
 
 
 @using System.ComponentModel.DataAnnotations;
@@ -40,7 +39,7 @@
 
 
 
-<h3 class="p-3 mb-5">@ViewBag.Title Single Meal Results</h3>
+<h3 class="p-3 mb-5">@ViewBag.Title Results</h3>
 <table class="table table-striped table-dark">
 
     <thead>
@@ -56,7 +55,7 @@
     </thead>
 
 
-    @* we are working with single MealProfile objects at a time here in the Model of List<MealProfile> objects. *@
+    @* we are working with single Profile objects at a time here in the Model of List<ProfileViewModel> objects. *@
     @for (var meal = 0; meal < Model.Profiles.Count; meal++)
     {
       

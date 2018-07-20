@@ -27,16 +27,16 @@ namespace MealProfiler.Models
 		/// <summary>
 		/// Constructor for easily creating mealProfiles.
 		/// </summary>
-		/// <param name="profileid">The ID for the MealProfile.</param>  so we can keep track of which meal profile submission is which
-		/// <param name="mealType">The meal type MealProfile passed to the MealGoal from the casting of the (int)MealType enum..</param>  dropdownbox
-		/// <param name="prepTime">The duration for the MealProfile (in minutes).</param>
-		/// <param name="mealCost">The duration for the MealProfile (in minutes).</param>
-		/// <param name="mealAuthor"></param>
+		/// <param name="profileid">The ID for the meal.</param> 
+		/// <param name="mealType">The meal type  passed to the MealGoal from the casting of the (int)MealType enum..</param>  dropdownbox
+		/// <param name="prepTime">The duration for the meal(in minutes).</param>
+		/// <param name="mealCost">The cost for the meal  (in US Dollars).</param>
+		/// <param name="mealAuthor">Person the created the meal.</param>
 		/// <param name="spinachQuantity">The ID for the textbox, whose value will be assigned to spinachQuantity if checked first. on form submit</param>
 		/// <param name="tomatoQuantity"></param>
 		/// <param name="spinachCheckbox">The ID for the spinachCheckBox.</param>
 		/// <param name="tomatoCheckbox"></param>
-		/// <param name="notes">The notes for the MealProfile.</param>
+		/// <param name="notes">The notes for the meal .</param>
 		public ProfileViewModel(int profileid, Meal.MealType mealType,
 				int prepTime, double mealCost, string mealAuthor, double spinachQuantity,
 				double tomatoQuantity,
@@ -57,13 +57,13 @@ namespace MealProfiler.Models
 		}
 
 		/// <summary>
-		/// The ID of the MealProfile order it was placed in apparently..
+		/// The ID of the meal
 		/// </summary>
 		public int? ProfileId { get; set; }
 
 		/// <summary>
-		/// We need using System.Component.DataAnnotation; for this
-		/// The meal ID for the MealProfile. The ID value should map to an ID in the meals collection.
+		/// We need using System.Component.DataAnnotation; 
+		/// The meal ID for the meal. The ID value should map to an ID in the meals collection.
 		/// </summary>
 		/// 
 
@@ -72,12 +72,12 @@ namespace MealProfiler.Models
 		// a number that corresponds to the type of meal.
 
 		/// <summary>
-		/// The meal for the Meal Profile.
+		/// The meal for the meal Profile.
 		/// </summary>
 		public Meal Meal { get; set; }
 
 		/// <summary>
-		/// The prepTime for the MealProfile (in minutes).
+		/// The prepTime for the meal(in minutes).
 		/// </summary>
 		[Display(Name = "Prep Time")]
 		[Range(typeof(int), "1", "100000")]
@@ -103,7 +103,7 @@ namespace MealProfiler.Models
 
 
 		/// <summary>
-		/// The notes for the MealProfile.
+		/// The notes for the meal.
 		/// </summary>
 
 		[MaxLength(200, ErrorMessage = "200 Character Limit for this Notes Field.")]

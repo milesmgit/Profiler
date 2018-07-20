@@ -133,7 +133,6 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\IngredientsRepository.cs" />
-    <Compile Include="Data\MealsRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

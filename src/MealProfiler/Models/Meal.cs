@@ -38,8 +38,8 @@ namespace MealProfiler.Models
 
 		/// <summary>
 		/// The name of the meal from the MealType enum; we use this to reference it in a list.
-		/// </summary>   we can use this with the Meal Goal returned like this:  Profile.Meal.Name  
-		/// or @Model.Meal.Name
+		/// </summary>   
+	
 		public string Name { get; set; }
 
 

@@ -9,10 +9,10 @@ namespace MealProfiler.Data
 	public class Data
 	{
 
-		// so when we need a Meals List, we call the method InitData; below Data.Meals is the result so we just call for that, and then do some Linq processing if desired.
+		// we will use this to reference a dropdown list for our AddEdit form.
 		public static List<Meal> Meals { get; set; }
 
-		// this will be called , that will then call the initialization of two lists of data.
+		// this will be called , that will then call the initialization of a list of data.
 		static Data()
 		{
 			InitData();
@@ -21,7 +21,7 @@ namespace MealProfiler.Data
 		public static void InitData()
 		{
 			// instantiate and provide the parameter values for 1 list.
-			// create the collection of Meals first so that we can refeence them when building our list of meal Profiles.
+			// create the collection of Meals first so that we can reference them when building our list of meal Profiles.
 			// use a local var meals to handle the processing, and then pass to the property Meals.
 			var meals = new List<Meal>()
 			{

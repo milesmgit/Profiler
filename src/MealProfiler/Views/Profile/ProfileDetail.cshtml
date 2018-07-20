@@ -1,11 +1,11 @@
 ﻿@*  if i set the Layout = null; this would tell MVC we were not using a layout page, for finer control of content display. *@
 
 
-@* add a model binding so that we can pass the mealProfiles list to this page for easy reference. *@
+@* add a model binding so that we can pass the profiles list to this page for easy reference. *@
 
 
 
-@* using a single MealProfile for this page. Baically, I want to see one meal at a time here. *@
+@* using a single Profile for this page. Baically, I want to see one meal at a time here. *@
 
 @model MealProfiler.Models.ProfileViewModel
 @using System.ComponentModel.DataAnnotations;
@@ -21,21 +21,7 @@
                                     //
                                     // we want the backbar not to show up if we are on the Add.cshtml view.
 
-
-  
-
 }
-
-
-
-@* this can be used to display results
-
-    ViewBag.MinutesSpentPreparing = minutesSpentPreparing;
-    ViewBag.AverageTimeSpentPreparingMeals = (minutesSpentPreparing / (double)numberOfMeals);
-    <h1 class="stats-header">Welcome to the NewRoots Meal Profiler and Ingredient Library!</h1>
-
-*@
-
 
 
 
@@ -145,7 +131,7 @@
                             <td>
                                 @* when i navigate to /Add/id# I will get specific results  *@
                                 <span class="hidden-xs">
-                                    <!-- Meal.Name will return the name of the Meal Goal. -->
+                                    
                                     @Model.MealGoal
                                 </span>
                             </td>

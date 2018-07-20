@@ -9,8 +9,7 @@ namespace MealProfiler.Models
 	public class Ingredient
 	{
 
-		// the Ingredients Id is just there to reference the detailed ingredient information view page; ingredient will
-		// not be part of the database table for MealProfile. Ingredient is basically used to store static information.
+		// Ingredient.cs is basically used to store static information.
 
 		public int Id { get; set; }  // Id will set the starting value for the initial ingredient displayed on the Detail View
 		public string IngredientName { get; set; }

@@ -17,18 +17,18 @@ namespace MealProfiler.Models
 		}
 
 		/// <summary>
-		/// Constructor for easily creating mealProfiles.
+		/// Constructor 
 		/// </summary>
-		/// <param name="profileid">The ID for the MealProfile.</param>  so we can keep track of which meal profile submission is which
-		/// <param name="mealType">The meal type MealProfile passed to the MealGoal from the casting of the (int)MealType enum..</param>  dropdownbox
-		/// <param name="prepTime">The duration for the MealProfile (in minutes).</param>
-		/// <param name="mealCost">The duration for the MealProfile (in minutes).</param>
-		/// <param name="mealAuthor"></param>
+		/// <param name="profileid">The ID for the meal Profile.</param>  so we can keep track of which meal profile submission is which
+		/// <param name="mealType">The meal type Profile passed to the MealGoal from the casting of the (int)MealType enum from the dropdown box</param>  
+		/// <param name="prepTime">The duration for the meal Profile (in minutes).</param>
+		/// <param name="mealCost">The cost for the meal Profile (in US Dollars).</param>
+		/// <param name="mealAuthor">  Person that created the meal. </param>
 		/// <param name="spinachQuantity">The ID for the textbox, whose value will be assigned to spinachQuantity if checked first. on form submit</param>
 		/// <param name="tomatoQuantity"></param>
 		/// <param name="spinachCheckbox">The ID for the spinachCheckBox.</param>
 		/// <param name="tomatoCheckbox"></param>
-		/// <param name="notes">The notes for the MealProfile.</param>
+		/// <param name="notes">The notes for the meal Profile.</param>
 		public Profile(int profileid, Meal.MealType mealType,
 				int prepTime, double mealCost, string mealAuthor, double spinachQuantity,
 				double tomatoQuantity, bool spinachCheckbox = false, bool tomatoCheckbox = false, 
@@ -49,13 +49,13 @@ namespace MealProfiler.Models
 		}
 
 		/// <summary>
-		/// The ID of the MealProfile order it was placed in apparently..
+		/// The ID of the meal Profile order it was placed in apparently..
 		/// </summary>
 		public int ProfileId { get; set; }
 
 		/// <summary>
 		/// We need using System.Component.DataAnnotation; for this
-		/// The meal ID for the MealProfile. The ID value should map to an ID in the meals collection.
+		/// The meal ID for the meal Profile. The ID value should map to an ID in the meals collection.
 		/// </summary>
 		/// 
 
@@ -64,12 +64,12 @@ namespace MealProfiler.Models
 		// a number that corresponds to the type of meal.
 
 		/// <summary>
-		/// The meal for the MealProfile.
+		/// The meal for the meal Profile.
 		/// </summary>
 		public Meal Meal { get; set; }
 
 		/// <summary>
-		/// The prepTime for the MealProfile (in minutes).
+		/// The prepTime for the meal Profile (in minutes).
 		/// </summary>
 		[Range(typeof(int), "1", "100000")]
 		public int PrepTime { get; set; }
@@ -90,7 +90,7 @@ namespace MealProfiler.Models
 		public double? TomatoQuantity { get; set; }
 
 		/// <summary>
-		/// The notes for the MealProfile.
+		/// The notes for the meal Profile.
 		/// </summary>
 
 		[MaxLength(200, ErrorMessage = "200 Character Limit for this Notes Field.")]
