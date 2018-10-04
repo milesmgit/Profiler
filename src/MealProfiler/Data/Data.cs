@@ -25,12 +25,12 @@ namespace MealProfiler.Data
 			// use a local var meals to handle the processing, and then pass to the property Meals.
 			var meals = new List<Meal>()
 			{
-				new Meal(Meal.MealType.HeartHealthy, "Heart Healthy"),
-				new Meal(Meal.MealType.DiabetesPrevention, "Diabetes Prevention"),
-				new Meal(Meal.MealType.EnergyBoost, "Boost Energy"),
-				new Meal(Meal.MealType.DigestiveHealth, "Digestive Health"),
-				new Meal(Meal.MealType.MuscleGrowth, "Muscle Growth"),
-				new Meal(Meal.MealType.FatLoss, "Fat Loss"),
+				new Meal(Meal.MealType.Heart_Healthy, "Heart Healthy"),
+				new Meal(Meal.MealType.Diabetes_Prevention, "Diabetes Prevention"),
+				new Meal(Meal.MealType.Energy_Boost, "Boost Energy"),
+				new Meal(Meal.MealType.Digestive_Health, "Digestive Health"),
+				new Meal(Meal.MealType.Muscle_Growth, "Muscle Growth"),
+				new Meal(Meal.MealType.Fat_Loss, "Fat Loss"),
 			};
 
 			Meals = meals;

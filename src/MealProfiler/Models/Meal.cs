@@ -9,12 +9,12 @@ namespace MealProfiler.Models
 	{
 		public enum MealType
 		{
-			HeartHealthy = 1,
-			DiabetesPrevention = 2,
-			FatLoss = 3,
-			MuscleGrowth = 4,
-			EnergyBoost = 5,
-			DigestiveHealth = 6
+			Heart_Healthy = 1,
+			Diabetes_Prevention = 2,
+			Fat_Loss = 3,
+			Muscle_Growth = 4,
+			Energy_Boost = 5,
+			Digestive_Health = 6
 		}
 
 		/// <summary>
